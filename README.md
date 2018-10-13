@@ -1,5 +1,7 @@
 # Terraform + AWS + Docker Swarm setup
 
+[![GuardRails badge](https://badges.production.guardrails.io/bennythejudge/terraform-aws-docker.svg)](https://www.guardrails.io)
+
 Here is the basic setup to run up docker swarm cluster in AWS using the Terraform.
 [Terraform](https://www.terraform.io) is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions. Using Terraform helps to create the infrastructure you can change, and trace safely and efficiently. A small swarm cluster will be created during startup. One swarm manager + two swarm workers. In the  *app-instances.tf* you will find the configuration. The swarm is initiated during provisioning. All other swarm agents (workers) will connect to the manager by a token, generated during the swarm initialisation. The trick is we should do it automatically, but we don't know the token before the initialisation. To send the token to the agents, I copy it to a file on the swarm manager and do "scp" to the master host from the agent's machines.
 
